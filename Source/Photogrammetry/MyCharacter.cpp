@@ -31,6 +31,7 @@ void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	
 }
 
 // Called every frame
@@ -97,12 +98,11 @@ void AMyCharacter::TraceForward_Implementation()
 
 	bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, TraceParams);
 
-	DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.0f);
+	/*DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.0f);*/
 
 	//If hit do something
 	if (bHit)
 	{
-		
 		AActor* HitActor = Hit.GetActor();
 		if (HitActor->GetClass()->IsChildOf(AInteractableBase::StaticClass()))
 		{
@@ -111,10 +111,18 @@ void AMyCharacter::TraceForward_Implementation()
 			AInteractableBase* InteractRef = Cast<AInteractableBase>(HitActor);
 			if (IsValid(InteractRef))
 			{
-				/*InteractRef->StartFocus();*/
 				bInteract = true;
+				FString ActorText = InteractRef->GetText();
+				OnActorInSight(FText::FromString(ActorText));
 			}
 		}
+
+	}
+	//Remove Text
+	else
+	{
+		bInteract = false;
+		OnActorInSight(FText::FromString(""));
 	}
 }
 

@@ -41,3 +41,8 @@ void AInteractableBase::EndFocus()
 
 }
 
+FString AInteractableBase::GetText()
+{
+	return InteractionText;
+}
+

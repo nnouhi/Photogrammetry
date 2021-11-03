@@ -20,15 +20,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, Category = "Interact")
+		FString InteractionText;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
-	virtual void OnInteract();
+	void OnInteract();
 
-	virtual void StartFocus();
+	void StartFocus();
 
-	virtual void EndFocus();
+	void EndFocus();
 
+	virtual FString GetText() override;
 };

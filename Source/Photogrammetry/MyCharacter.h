@@ -40,6 +40,9 @@ protected:
 
 	void TraceForward_Implementation();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "InteractableHUD")
+		void OnActorInSight(const FText& Text);
+
 private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -5,18 +5,4 @@
 
 // Add default functionality here for any IInteractInterface functions that are not pure virtual.
 
-void IInteractInterface::OnInteract()
-{
-	
-}
 
-void IInteractInterface::StartFocus()
-{
-	
-
-}
-
-void IInteractInterface::EndFocus()
-{
-	
-}

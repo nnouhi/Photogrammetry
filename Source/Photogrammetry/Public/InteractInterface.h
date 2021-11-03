@@ -23,7 +23,8 @@ class PHOTOGRAMMETRY_API IInteractInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	
-		void OnInteract();
-		void StartFocus();
-		void EndFocus();
+	virtual	void OnInteract() = 0;
+	virtual	void StartFocus() = 0;
+	virtual	void EndFocus() = 0;
+	virtual FString GetText() = 0;
 };
