@@ -25,15 +25,26 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+	/*Methods for Character Movement*/
+	void MoveForwardBackwards(float Value);
+	void MoveLeftRight(float Value);
+
+	/*Used for line tracing*/
+	UPROPERTY(EditAnywhere, Category = "Interaction")
+		float TraceDistance;
+
+	UPROPERTY(EditAnywhere, Category = "Interaction")
+		bool bInteract;
+
+	void InteractPress();
+
+	void TraceForward_Implementation();
+
+private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	/*Methods for Character Movement*/
-	void MoveForwardBackwards(float Value);
-	void MoveLeftRight(float Value);
 
 };
