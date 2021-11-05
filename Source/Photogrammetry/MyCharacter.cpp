@@ -116,13 +116,18 @@ void AMyCharacter::TraceForward_Implementation()
 				OnActorInSight(FText::FromString(ActorText));
 			}
 		}
+		else
+		{
+			bInteract = false;
+			OnActorInSight(FText::FromString(""));
+		}
 
 	}
 	//Remove Text
-	else
-	{
-		bInteract = false;
-		OnActorInSight(FText::FromString(""));
-	}
+	//else
+	//{
+	//	bInteract = false;
+	//	OnActorInSight(FText::FromString(""));
+	//}
 }
 
