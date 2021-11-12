@@ -31,6 +31,7 @@ AMyCharacter::AMyCharacter()
 	bCanMove = true;
 	bInspecting = false;
 	bHoldingItem = false;
+
 }
 
 // Called when the game starts or when spawned
@@ -63,16 +64,21 @@ void AMyCharacter::Tick(float DeltaTime)
 			if (Hit.GetActor()->GetClass()->IsChildOf(APickupActor::StaticClass()))
 			{
 				CurrentItem = Cast<APickupActor>(Hit.GetActor());
+				FString ActorText = CurrentItem->GetText();
+				OnActorInSight(FText::FromString(ActorText));
 			}
 		}
 		else
 		{
 			CurrentItem = NULL;
+			OnActorInSight(FText::FromString(""));
 		}
 	}
+	else
+	{
+		OnActorInSight(FText::FromString(""));
+	}
 	
-
-
 	if (bInspecting)
 	{
 		if (bHoldingItem)
@@ -100,7 +106,7 @@ void AMyCharacter::Tick(float DeltaTime)
 		if (bHoldingItem)
 		{
 			
-			HoldingComponent->SetRelativeLocation(FVector(150.0f, 0.0f, 0.0f)); //will adjust these in the future.
+			HoldingComponent->SetRelativeLocation(FVector(150.0f, 0.0f, 50.0f)); //will adjust these in the future.
 			HoldingComponent->SetRelativeRotation(FRotator(0.0f, 90.0f, 90.0f)); //Rotate when holding.
 		}
 	}
@@ -164,34 +170,11 @@ void AMyCharacter::OnInspect()
 	}
 	else
 	{
-<<<<<<< HEAD
+
 		bInspecting = true;
 	}
 }
-=======
-		AActor* HitActor = Hit.GetActor();
-		if (HitActor->GetClass()->IsChildOf(AInteractableBase::StaticClass()))
-		{
-			/*UE_LOG(LogTemp, Warning, TEXT("Test"));*/
-			DrawDebugBox(GetWorld(), Hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
-			AInteractableBase* InteractRef = Cast<AInteractableBase>(HitActor);
-			if (IsValid(InteractRef))
-			{
-				bInteract = true;
-				FString ActorText = InteractRef->GetText();
-				OnActorInSight(FText::FromString(ActorText));
-			}
-		}
-		else
-		{
-			//Remove Text and make it not be able to interact
-			bInteract = false;
-			OnActorInSight(FText::FromString(""));
-		}
-<<<<<<< Updated upstream
-=======
->>>>>>> 234e328f5495ca787bf2df292b5f1c53e6356f16
->>>>>>> Stashed changes
+		
 
 void AMyCharacter::OnInspectRealeased()
 {
@@ -203,14 +186,10 @@ void AMyCharacter::OnInspectRealeased()
 		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = PitchMin;
 		ToggleMovement();
 	}
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 	else
 	{
 		bInspecting = false;
 	}
->>>>>>> Stashed changes
 }
 
 void AMyCharacter::ToggleItemPickUp()
@@ -225,8 +204,6 @@ void AMyCharacter::ToggleItemPickUp()
 			CurrentItem = NULL;
 		}
 	}
-=======
->>>>>>> 234e328f5495ca787bf2df292b5f1c53e6356f16
 }
 
 void AMyCharacter::ToggleMovement()

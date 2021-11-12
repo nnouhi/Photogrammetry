@@ -88,4 +88,9 @@ void APickupActor::Pickup()
 	}
 }
 
+FString APickupActor::GetText()
+{
+	return InteractionText;
+}
+
 

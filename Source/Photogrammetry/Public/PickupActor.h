@@ -53,4 +53,12 @@ public:
 	UCameraComponent* PlayerCamera;
 	FVector ForwardVector;
 
+
+	//Used for the displaying text
+	UPROPERTY(EditAnywhere)
+	FString InteractionText;
+
+	UFUNCTION()
+	FString GetText();
+
 };
